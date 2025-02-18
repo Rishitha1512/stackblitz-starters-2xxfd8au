@@ -14,10 +14,16 @@ document.addEventListener('DOMContentLoaded', function() {
       name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
   }
 
-  // 1. Get the value of the 'count' cookie
-  // 2. If the cookie exists, increment the value and update the cookie
-  // 3. If the cookie does not exist, create it and set the value to 1
-  // 4. Display the count on the webpage
+  let count = getCookie('count');
+  if (count === null) {
+    count = 0;
+  } else {
+    count = parseInt(count);
+  }
+  count++;
+  setCookie('count', count, 7);
 
-  // your code here
+  const countDisplay = document.createElement('div');
+  countDisplay.textContent = `This page has been loaded ${count} times.`;
+  document.body.appendChild(countDisplay);
 });
